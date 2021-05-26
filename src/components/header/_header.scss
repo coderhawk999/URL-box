@@ -1,0 +1,32 @@
+.header {
+  // -webkit-touch-callout: none;
+  // -webkit-user-select: none;
+  // -khtml-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+  height: 48px;
+  background-color: $color-primary;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 30px;
+
+  &-title {
+    font-weight: 700;
+    font-size: 2rem;
+    color: $color-accent;
+    line-height: 48px;
+  }
+  &-nav {
+    line-height: 48px;
+    display: flex;
+    padding-right: 60px;
+    &-item {
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0px 30px;
+      opacity: 0.5;
+    }
+  }
+}

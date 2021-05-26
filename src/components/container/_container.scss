@@ -1,0 +1,12 @@
+.container {
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+  width: 70%;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include respond(phone) {
+    width: 90%;
+  }
+}

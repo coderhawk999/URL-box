@@ -1,0 +1,19 @@
+//abstract
+
+@import "./styles/abstract/variables.scss";
+@import "./styles/abstract/mixins.scss";
+
+//base
+@import "./styles/base/base.scss";
+@import "./styles/base/typography.scss";
+
+//componenets
+@import "./components/container/container";
+@import "./components/header/header";
+@import "./components/pageHeader/pageHeader";
+@import "./components/searchBar/searchBar";
+@import "./components/customSelect/customSelect";
+
+//pages
+
+@import "./pages/Search";
