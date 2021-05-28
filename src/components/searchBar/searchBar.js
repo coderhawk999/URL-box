@@ -7,9 +7,8 @@ const SearchBar = () => {
         <input
           type="search"
           className="search-bar-input"
-          placeholder="Search a Team"
+          placeholder="Search"
         />
-        <div className="devider"></div>
       </div>
     </div>
   );
