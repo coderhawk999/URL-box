@@ -3,7 +3,7 @@
     flex-direction: column;
     margin-bottom: 5rem;
     background-color: black;
-    padding: 5rem;
+    padding: 3rem;
     border-radius: 5px;
     font-family: $font-OS;
     color: white;
@@ -40,11 +40,12 @@
     }
   
     &__description {
+      background-color: rgb(218, 218, 218);
+      padding: 25px;
       margin: 1.5rem 0;
-      font-size: 1.8rem;
+      font-size: 1rem;
+      color:black;
       text-align: justify;
-      line-height: 3rem;
-      letter-spacing: 0.015em;
     }
   
     &__speaker {

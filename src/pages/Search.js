@@ -15,7 +15,7 @@ class Search extends React.Component {
 
   handlSearch = (searchTerm) => {
     console.log(searchTerm);
-    var api = `https://api.stackexchange.com/2.2/search/advanced?pagesize=5&order=desc&sort=activity&q=${searchTerm}%20pass&answers=5&site=stackoverflow`;
+    var api = `https://api.stackexchange.com/2.2/similar?pagesize=5&order=desc&sort=activity&title=${searchTerm}%20pass&answers=5&site=stackoverflow&filter=withbody`;
     axios.get(api).then((res) => {
       console.log(res.data);
       this.setState({ data: res.data.items });
@@ -41,13 +41,10 @@ class Search extends React.Component {
                   return (
                     <SearchCard
                       platform={"StackOverflow"}
-                      title={
-                        info.title
-                      }
+                      title={info.title}
+                      info={info}
                       tags={info.tags}
-                      description={
-                        "Most organizations use cloud services in one way or another to run their workloads. In this session, we will see how we can get started on our journey in the vast domain of Cloud Security. Along with an interesting interaction to instil a deeper understanding of the fundamentals of working with the cloud, Madhu will share his experiences too."
-                      }
+                      description={info.body}
                     />
                   );
                 })}
