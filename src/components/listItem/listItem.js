@@ -27,15 +27,16 @@ const SearchCard = ({ description, tags, platform, title, info }) => {
       </div>
       <div className="search-card__buttons">
         <Link
+          className={"button-white"}
           to="#"
           onClick={() => {
             setShow(!show);
           }}
         >
-          Show Answer
+          Show Top Answer
         </Link>
       </div>
-      <div className="search-card__description">{}</div>
+      {show ? <div className="search-card__description">{}</div> : ""}
     </div>
   );
 };
@@ -48,7 +49,7 @@ const GetAnswer = (answerId) => {
     setAns(res.data.items);
   });
 
-  return <div dangerouslySetInnerHTML={{ __html: description }} />;
+  return <div />;
 };
 
 export default SearchCard;

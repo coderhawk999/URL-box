@@ -29,9 +29,20 @@ body {
   padding: 0;
   margin: 0;
   counter-reset: section;
-  background-color: $color-background;
+  background-color: #363749;
   font-family: "Raleway", sans-serif;
 }
 button:focus {
   outline: 0px;
+}
+
+.button-white {
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: $font-OS;
+  background-color: $color-accent;
+  border: solid grey 0px;
+  text-align: center;
 }

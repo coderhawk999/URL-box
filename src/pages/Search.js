@@ -15,7 +15,7 @@ class Search extends React.Component {
 
   handlSearch = (searchTerm) => {
     console.log(searchTerm);
-    var api = `https://api.stackexchange.com/2.2/similar?pagesize=5&order=desc&sort=activity&title=${searchTerm}%20pass&answers=5&site=stackoverflow&filter=withbody`;
+    var api = `https://api.stackexchange.com/2.2/search?pagesize=5&order=desc&sort=activity&intitle=${searchTerm}%20pass&answers=5&site=stackoverflow&filter=withbody`;
     axios.get(api).then((res) => {
       console.log(res.data);
       this.setState({ data: res.data.items });
@@ -28,11 +28,7 @@ class Search extends React.Component {
         <PageHeader title={"Dev"} heroTitle={"Search"} />
         <Container>
           <div className="search">
-            <SearchBar
-              onChange={(e) => {
-                this.handlSearch(e.target.value);
-              }}
-            />
+            <SearchBar onChange={this.handlSearch} />
           </div>
           <div className="search-result">
             {this.state.data.length > 0 ? (

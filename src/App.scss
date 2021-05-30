@@ -15,13 +15,12 @@ td > code {
   border-radius: 0.2rem;
 }
 //abstract
-
+@import "./styles/base/typography.scss";
 @import "./styles/abstract/variables.scss";
 @import "./styles/abstract/mixins.scss";
 
 //base
 @import "./styles/base/base.scss";
-@import "./styles/base/typography.scss";
 
 //componenets
 @import "./components/container/container";
