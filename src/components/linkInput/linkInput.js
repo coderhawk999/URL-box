@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-const SearchBar = (props) => {
+const LinkInputBar = (props) => {
   const [query, setQuery] = useState("");
   return (
-    <div className="search-bar-container">
-      <div className="search-bar">
+    <div className="linkInput-bar-container">
+      <div className="linkInput-bar">
         <input
-          type="search"
-          className="search-bar-input"
-          placeholder="Search"
+          type="linkInput"
+          className="linkInput-bar-input"
+          placeholder="Add a link or text"
           onChange={(e) => {
             setQuery(e.target.value);
           }}
@@ -16,15 +16,15 @@ const SearchBar = (props) => {
       </div>
       <Link
         className={"button-white"}
-        style={{ flex: "0.1",fontSize:"1.3rem" }}
+        style={{ flex: "0.1", fontSize: "1.3rem" }}
         onClick={() => {
           props.onChange(query);
         }}
       >
-        Search
+        Add +
       </Link>
     </div>
   );
 };
 
-export default SearchBar;
+export default LinkInputBar;

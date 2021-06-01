@@ -1,54 +1,82 @@
-.search-card {
+.card {
+  flex: 0 0 31.333333%;
+  margin: 10px;
   display: flex;
-  max-width: inherit;
   flex-direction: column;
-  margin-bottom: 5rem;
-  background-color: #1e202e;
-  padding: 3rem;
+  margin-bottom: 2rem;
+  background-color: $color-primary;
   border-radius: 5px;
   font-family: $font-OS;
   color: white;
   @include respond(phone) {
     padding: 3rem 2rem;
   }
-
   &__search-platform {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    padding: 30px;
+    text-align: center;
+    font-weight: 700;
+    background-color: $color-accent;
 
     @include respond(phone) {
       font-size: 1.8rem;
     }
   }
+  &-content {
+    flex: 1;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    &__search-title {
+      font-size: 2rem;
+      color: white;
+      font-weight: 600;
+      margin: 0.5srem 0;
 
-  &__search-title {
-    font-size: 2rem;
-    color: white;
-    font-weight: 600;
-    margin: 1rem 0;
-
-    @include respond(phone) {
-      font-size: 2.5rem;
+      @include respond(phone) {
+        font-size: 2.5rem;
+      }
     }
-  }
 
-  &__search-tags {
-    font-size: 2rem;
+    &__search-tags {
+      margin: 1rem 0rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      flex-direction: row;
+      p {
+        max-width: initial;
+        padding: 4px 10px;
+        border: solid $color-secondary 2px;
+        color: white;
+      }
+      p:not(:first-child) {
+        margin: 0px 5px;
+      }
+      @include respond(phone) {
+        font-size: 1.4rem;
+      }
+    }
 
-    @include respond(phone) {
+    &__description {
+      font-family: $font-OS;
       font-size: 1.4rem;
+      margin: 1.5rem 0;
+      font-weight: 500;
+      line-height: 2rem;
+      letter-spacing: 0.015em;
+      color: rgb(255, 255, 255);
+      text-align: justify;
     }
-  }
-
-  &__description {
-    background-color: rgb(233, 233, 233);
-    padding: 25px;
-    margin: 1.5rem 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: black;
-    text-align: justify;
-  }
-  &__buttons {
-    margin-top: 15px;
+    &__buttons {
+      flex: 1;
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      &-tools{
+        display: flex;
+        flex-direction: row;
+      }
+    }
   }
 }

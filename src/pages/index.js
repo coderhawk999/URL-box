@@ -2,14 +2,14 @@ import React from "react";
 import Layout from "../layout/defaultLayout";
 import PageHeader from "../components/pageHeader/pageHeader";
 import Container from "../components/container/container";
-import SearchBar from "../components/searchBar/searchBar";
-import SearchCard from "../components/listItem/listItem";
+import LinkInput from "../components/linkInput/linkInput";
+import LisItem from "../components/listItem/listItem";
 import axios from "axios";
-class Search extends React.Component {
+class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: [1, 2, 3],
     };
   }
 
@@ -25,28 +25,30 @@ class Search extends React.Component {
   render() {
     return (
       <Layout>
-        <PageHeader title={"Dev"} heroTitle={"Search"} />
+        <PageHeader title={"URL"} heroTitle={"Box"} />
         <Container>
           <div className="search">
-            <SearchBar onChange={this.handlSearch} />
+            <LinkInput onChange={this.handlSearch} />
           </div>
           <div className="search-result">
             {this.state.data.length > 0 ? (
               <>
                 {this.state.data.map((info, index) => {
                   return (
-                    <SearchCard
-                      platform={"StackOverflow"}
-                      title={info.title}
-                      info={info}
-                      tags={info.tags}
-                      description={info.body}
+                    <LisItem
+                      platform={"< Link >"}
+                      title={"Job Link"}
+                      tags={["React", "javascript"]}
                     />
                   );
                 })}
               </>
             ) : (
-              <div>"Loading"</div>
+              <LisItem
+                platform={"< Link >"}
+                title={"Job Link"}
+                tags={["React", "javascript"]}
+              />
             )}
           </div>
         </Container>
@@ -55,4 +57,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default Index;

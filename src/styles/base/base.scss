@@ -36,13 +36,29 @@ button:focus {
   outline: 0px;
 }
 
+.button-outline-accent {
+  padding: 0px 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: $font-OS;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 .button-white {
   padding: 12px;
   color: white;
   text-decoration: none;
-  font-weight: 600;
-  font-family: $font-OS;
   background-color: $color-accent;
-  border: solid grey 0px;
+  font-weight: 600;
+  font-size: 1.2rem;
   text-align: center;
+  font-family: $font-OS;
+  border: solid $color-accent 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

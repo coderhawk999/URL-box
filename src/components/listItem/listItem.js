@@ -1,55 +1,93 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
-const SearchCard = ({ description, tags, platform, title, info }) => {
+const SearchCard = ({ description, tags, platform, title }) => {
   const [ans, setAns] = useState();
   const [show, setShow] = useState(false);
-  useEffect(() => {
-    let api = `https://api.stackexchange.com/2.2/answers/${info.accepted_answer_id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`;
-    // axios.get(api).then((res) => {
-    //   console.log(res.data);
-    //   setAns(res.data.items);
-    // });
-  }, []);
   return (
-    <div className="search-card">
-      <p className="search-card__search-platform">{platform}</p>
-      <p className="search-card__search-title">{title}</p>
-      <p className="search-card__search-tags">
-        {tags.length > 0
-          ? tags.map((info, index) => {
-              return `${info} `;
-            })
-          : ""}{" "}
-      </p>
-      <div className="search-card__description">
-        <div dangerouslySetInnerHTML={{ __html: description }} />{" "}
+    <div className="card">
+      <p className="card__search-platform">{platform}</p>
+      <div className="card-content">
+        <p className="card-content__search-tags">
+          {tags.length > 0
+            ? tags.map((info, index) => {
+                return <p>{info}</p>;
+              })
+            : ""}{" "}
+        </p>
+        <p className="card-content__search-title">{title}</p>
+        {description ? (
+          description.length > 0 ? (
+            <div className="card-content__description">{description}</div>
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        <div className="card-content__buttons">
+          <Link
+            className={"button-outline-accent"}
+            to="#"
+            onClick={() => {
+              setShow(!show);
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#363749"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            {/* <p style={{paddingLeft:"5px",display:"flex",flexDirection:"column",justifyContent:"center"}}>Copy</p> */}
+          </Link>
+          <div className="card-content__buttons-tools">
+            <Link className={"button-outline-accent"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#363749"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+                <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+              </svg>
+            </Link>
+            <Link className={"button-outline-accent"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#363749"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                <line x1="10" y1="11" x2="10" y2="17"></line>
+                <line x1="14" y1="11" x2="14" y2="17"></line>
+              </svg>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="search-card__buttons">
-        <Link
-          className={"button-white"}
-          to="#"
-          onClick={() => {
-            setShow(!show);
-          }}
-        >
-          Show Top Answer
-        </Link>
-      </div>
-      {show ? <div className="search-card__description">{}</div> : ""}
     </div>
   );
-};
-
-const GetAnswer = (answerId) => {
-  const [ans, setAns] = useState([]);
-  let api = `https://api.stackexchange.com/2.2/answers/${answerId}?order=desc&sort=activity&site=stackoverflow&filter=withbody`;
-  axios.get(api).then((res) => {
-    console.log(res.data);
-    setAns(res.data.items);
-  });
-
-  return <div />;
 };
 
 export default SearchCard;

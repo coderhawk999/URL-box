@@ -5,20 +5,13 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import Search from "./pages/Search";
+import Index from "./pages/index";
 function App() {
   return (
     <Router>
       <div className="App">
         <Switch>
-          <Route
-            path="/"
-            exact
-            component={() => {
-              return <Redirect to="/search" />;
-            }}
-          />
-          <Route path="/search" component={Search} />
+          <Route path="/" component={Index} exact={true} />
         </Switch>
       </div>
     </Router>

@@ -29,7 +29,8 @@ td > code {
 @import "./components/searchBar/searchBar";
 @import "./components/customSelect/customSelect";
 @import "./components/listItem/listItem";
+@import "./components/linkInput/linkInput";
 
 //pages
 
-@import "./pages/Search";
+@import "./pages/_index";
