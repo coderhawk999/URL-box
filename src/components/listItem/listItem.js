@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-const SearchCard = ({ description, tags, platform, title }) => {
+const SearchCard = ({ description, tags, type, title }) => {
   const [ans, setAns] = useState();
   const [show, setShow] = useState(false);
   return (
     <div className="card">
-      <p className="card__search-platform">{platform}</p>
+      <p className="card__search-platform">{type}</p>
       <div className="card-content">
         <p className="card-content__search-tags">
           {tags.length > 0

@@ -18,7 +18,11 @@ const LinkInputBar = (props) => {
         className={"button-white"}
         style={{ flex: "0.1", fontSize: "1.3rem" }}
         onClick={() => {
-          props.onChange(query);
+          let data ={
+            link:query,
+            title:"Test title"
+          }
+          props.onAdd(data);
         }}
       >
         Add +
