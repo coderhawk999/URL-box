@@ -22,7 +22,7 @@ const LinkInputBar = (props) => {
             link:query,
             title:"Test title"
           }
-          props.onAdd(data);
+          props.onAdd(data.title,data.link);
         }}
       >
         Add +

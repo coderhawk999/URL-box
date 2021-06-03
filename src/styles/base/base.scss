@@ -62,3 +62,14 @@ button:focus {
   flex-direction: column;
   justify-content: center;
 }
+
+.svg-style {
+  stroke: #363749;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+.svg-style:hover {
+  stroke: #4b4c61;
+  transform: all 0.3s ease-in;
+  opacity: 1;
+}
