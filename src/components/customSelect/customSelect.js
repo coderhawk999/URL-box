@@ -1,30 +1,47 @@
 import React, { useState } from "react";
 
-const CustomSelect = () => {
+const CustomSelect = (props) => {
   const [show, setShow] = useState(false);
   return (
     <div className="custom-select">
-      <button
-        className="custom-select-title"
-        onClick={() => {
-          setShow(!show);
-        }}
-      >
-        Select an option
-        <i class="arrow down"></i>
-      </button>
-
-      <ul
-        className={
-          show ? "custom-select-options" : "custom-select-options-none"
-        }
-      >
-        <li>Waht is your</li>
-        <li>Select an option</li>
-
-        <li>Select an option</li>
-      </ul>
-      <p></p>
+      <p className="label-text">{props.label}</p>
+      <div className="custom-select-input">
+        {" "}
+        <p
+          className="custom-select-input-selected"
+          onClick={() => {
+            setShow(!show);
+          }}
+        >
+          {props.value || "Select a Option"}
+        </p>
+        {show ? (
+          <div className="custom-select-input-options">
+            {props.options ? (
+              props.options.length > 0 ? (
+                props.options.map((info, index) => {
+                  return (
+                    <p
+                      onClick={() => {
+                        props.onChange(info);
+                        setShow(!show);
+                      }}
+                    >
+                      {info}
+                    </p>
+                  );
+                })
+              ) : (
+                <p>{props.selected || "Select a Option"}</p>
+              )
+            ) : (
+              <p>{props.selected || "Select a Option"}</p>
+            )}
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

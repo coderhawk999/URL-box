@@ -19,12 +19,14 @@ class Index extends React.Component {
       .toArray()
       .then((links) => {
         this.setState({ links });
+        console.log(links)
       });
   }
-  handleAddLinks(title, link) {
+  handleAddLinks(title, link, color) {
     const link_obj = {
       title,
       link,
+      color
     };
     db.table("links")
       .add(link_obj)
@@ -61,6 +63,7 @@ class Index extends React.Component {
                       handleDeleteLinks={this.handleDeleteLinks}
                       key={info.id}
                       id={info.id}
+                      color={info.color}
                       type={"< Link >"}
                       title={info.title}
                       tags={["React", "javascript"]}

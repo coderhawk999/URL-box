@@ -1,3 +1,4 @@
+import "reactjs-popup/dist/index.css";
 import "./App.scss";
 import {
   BrowserRouter as Router,

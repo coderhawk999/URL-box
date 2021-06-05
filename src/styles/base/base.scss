@@ -48,7 +48,23 @@ button:focus {
   flex-direction: column;
   justify-content: flex-end;
 }
+.button-outline {
+  flex: 1;
+  padding: 12px;
+  color:white;
+  text-decoration: none;
+  background-color: $color-primary;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: $font-OS;
+  border: solid $color-accent 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .button-white {
+  flex: 1;
   padding: 12px;
   color: white;
   text-decoration: none;
@@ -62,7 +78,12 @@ button:focus {
   flex-direction: column;
   justify-content: center;
 }
-
+.label-text {
+  font-weight: 600;
+  color: rgb(149, 149, 149);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
 .svg-style {
   stroke: #363749;
   opacity: 0.8;
@@ -72,4 +93,31 @@ button:focus {
   stroke: #4b4c61;
   transform: all 0.3s ease-in;
   opacity: 1;
+}
+@keyframes anvil {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  1% {
+    transform: scale(0.96) translateY(10px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+  }
+}
+.popup-content {
+  padding: 0px;
+  -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+  background-color: $color-primary;
+  outline: none;
+  border: none;
+}
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }

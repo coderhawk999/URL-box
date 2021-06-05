@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Copy, Edit, Delete } from "../../assets/svgIcons/svg";
+const COLORS = { blue: "#4864e6", red: "#e64848" };
+
 const SearchCard = ({
   description,
   tags,
   type,
   title,
+  color,
   id,
   handleDeleteLinks,
 }) => {
   const [show, setShow] = useState(false);
   return (
     <div className="card">
-      <p className="card__search-platform">{type}</p>
+      <p className="card__search-platform" style={{ background: COLORS[`${color}`] }}>
+        {type}
+      </p>
       <div className="card-content">
         <p className="card-content__search-tags">
           {tags.length > 0
