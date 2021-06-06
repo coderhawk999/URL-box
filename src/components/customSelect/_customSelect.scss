@@ -36,13 +36,13 @@
   padding: 10px;
   &-input {
     position: relative;
+    background-color: white;
     &-selected {
       cursor: pointer;
       padding: 0.7rem;
       font-size: 1.1rem;
       font-weight: 600;
       color: $color-text;
-      background-color: white;
     }
     &-options {
       overflow-y: scroll;

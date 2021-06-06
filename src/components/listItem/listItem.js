@@ -14,6 +14,7 @@ const SearchCard = ({
 }) => {
   const [show, setShow] = useState(false);
   return (
+    <div className="card-container">
     <div className="card">
       <p className="card__search-platform" style={{ background: COLORS[`${color}`] }}>
         {type}
@@ -22,7 +23,7 @@ const SearchCard = ({
         <p className="card-content__search-tags">
           {tags.length > 0
             ? tags.map((info, index) => {
-                return <p>{info}</p>;
+                return <p key={info.id}>{info.title}</p>;
               })
             : ""}{" "}
         </p>
@@ -62,6 +63,7 @@ const SearchCard = ({
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -78,6 +78,22 @@ button:focus {
   flex-direction: column;
   justify-content: center;
 }
+.button-primary {
+  flex: 1;
+  padding: 12px;
+  color: rgb(189, 189, 189);
+  text-decoration: none;
+  background-color: $color-primary;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: $font-OS;
+  border: solid $color-accent 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
 .label-text {
   font-weight: 600;
   color: rgb(149, 149, 149);
@@ -85,12 +101,17 @@ button:focus {
   margin-bottom: 10px;
 }
 .svg-style {
+  cursor: pointer;
   stroke: #363749;
   opacity: 0.8;
   transition: 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .svg-style:hover {
-  stroke: #4b4c61;
+  stroke: #ffffff;
   transform: all 0.3s ease-in;
   opacity: 1;
 }
@@ -120,4 +141,10 @@ button:focus {
 }
 .popup-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+input{
+  border: none;
+}
+input:focus{
+  outline: none;
 }

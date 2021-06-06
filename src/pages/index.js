@@ -4,6 +4,7 @@ import PageHeader from "../components/pageHeader/pageHeader";
 import Container from "../components/container/container";
 import LinkInput from "../components/linkInput/linkInput";
 import LisItem from "../components/listItem/listItem";
+import ToolBar from "../components/toolBar/toolBar"
 import db from "../db";
 class Index extends React.Component {
   constructor(props) {
@@ -22,11 +23,12 @@ class Index extends React.Component {
         console.log(links)
       });
   }
-  handleAddLinks(title, link, color) {
+  handleAddLinks(title, link, color, tags) {
     const link_obj = {
       title,
       link,
-      color
+      color,
+      tags
     };
     db.table("links")
       .add(link_obj)
@@ -66,17 +68,13 @@ class Index extends React.Component {
                       color={info.color}
                       type={"< Link >"}
                       title={info.title}
-                      tags={["React", "javascript"]}
+                      tags={info.tags}
                     />
                   );
                 })}
               </>
             ) : (
-              <LisItem
-                type={"< Link >"}
-                title={"Job Link"}
-                tags={["React", "javascript"]}
-              />
+              ""
             )}
           </div>
         </Container>

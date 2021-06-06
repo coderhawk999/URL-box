@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
 import CustomInput from "../Input/input";
 import CustomSelect from "../customSelect/customSelect";
+import MultiSelect from "../multiSelect/multiSelect";
+import { Filter } from "../../assets/svgIcons/svg";
+import db from "../../db";
 const COLORS = { blue: "#4864e6", red: "#e64848" };
 
 const LinkInputBar = (props) => {
@@ -12,49 +15,89 @@ const LinkInputBar = (props) => {
     title: "Link Title",
     link: "",
     color: "blue",
+    tags: [],
   });
   return (
-    <div className="linkInput-bar-container">
-      <InfoPopup
-        open={open}
-        title={"Add Info"}
-        onClose={() => {
-          setOpen(false);
-        }}
-        state={state}
-        setState={setState}
-        submit={props.onAdd}
-      />
-      <div className="linkInput-bar">
-        <input
-          type="linkInput"
-          className="linkInput-bar-input"
-          placeholder="Add a link or text"
-          onChange={(e) => {
-            setState({ ...state, [`link`]: e.target.value });
+    <div className="linkInput">
+      <div className="linkInput-bar-container">
+        <InfoPopup
+          open={open}
+          title={"Add Info"}
+          onClose={() => {
+            setOpen(false);
           }}
+          state={state}
+          setState={setState}
+          submit={props.onAdd}
         />
+        <Link className="button-primary" style={{ flex: "0.08" }}>
+          <Filter size={16} color={"white"} />
+          <p
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            Filter
+          </p>
+        </Link>
+
+        <div className="linkInput-bar">
+          <input
+            type="linkInput"
+            className="linkInput-bar-input"
+            placeholder="Search"
+            onChange={(e) => {
+              setState({ ...state, [`link`]: e.target.value });
+            }}
+          />
+        </div>
+
+        <Link
+          className={"button-primary"}
+          style={{ flex: "0.1", fontSize: "1.3rem" }}
+          onClick={() => {
+            setOpen(!open);
+          }}
+        >
+          Add URL
+        </Link>
       </div>
-      <Link
-        className={"button-white"}
-        style={{ flex: "0.1", fontSize: "1.3rem" }}
-        onClick={() => {
-          setOpen(!open);
-          // let data = {
-          //   link: query,
-          //   title: "Test title",
-          // };
-          // props.onAdd(data.title, data.link);
-        }}
-      >
-        Add +
-      </Link>
     </div>
   );
 };
 
 const InfoPopup = (props) => {
   console.log(COLORS[`${props.state.color}`]);
+  const [tags, SetTags] = useState([]);
+  useEffect(() => {
+    db.table("tags")
+      .toArray()
+      .then((res) => {
+        console.log(res);
+        SetTags(res);
+      });
+  }, []);
+  const AddTag = (title) => {
+    const tag_obj = {
+      title,
+    };
+    db.table("tags")
+      .add(tag_obj)
+      .then((id) => {
+        var tag = {
+          title: title,
+          id: id,
+        };
+        var tags = [...props.state.tags];
+        props.setState({
+          ...props.state,
+          tags: [...tags, { ...tag }],
+        });
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <Popup
       className={"my-popup-content"}
@@ -62,6 +105,7 @@ const InfoPopup = (props) => {
       contentStyle={{
         width: "30%",
         overflowX: "hidden",
+        maxWidth: "30%",
       }}
       modal
       position="right center"
@@ -84,13 +128,15 @@ const InfoPopup = (props) => {
             </div>
             <div className="pop-content-input">
               {" "}
+              <CustomInput label="URL" value={props.state.link}  onChange={(e)=>{
+                props.setState({...props.state,["link"]:e.target.value})
+              }}/>
               <CustomInput
-                label="Link title"
+                label="URL title"
                 onChange={(e) => {
                   props.setState({ ...props.state, ["title"]: e.target.value });
                 }}
               />
-              <CustomInput label="Link" value={props.state.link} />
               <CustomSelect
                 label="Choose Tile Colour"
                 value={props.state.color}
@@ -99,7 +145,28 @@ const InfoPopup = (props) => {
                 }}
                 options={["blue", "red", "purple"]}
               />
-              <CustomSelect label="Add Tags" placeholder />
+              <MultiSelect
+                label="Add Tags"
+                value={props.state.color}
+                tags={props.state.tags}
+                onAdd={(tag) => {
+                  var tags = [...props.state.tags];
+                  props.setState({
+                    ...props.state,
+                    tags: [...tags, { ...tag }],
+                  });
+                }}
+                onDelete={(tagId) => {
+                  var newList = props.state.tags.filter(
+                    (tag) => tag.id != tagId
+                  );
+                  props.setState({ ...props.state, tags: newList });
+                }}
+                addOnEmpty={(val) => {
+                  AddTag(val);
+                }}
+                options={tags}
+              />
             </div>
             <div className="pop-content-buttons">
               <Link
@@ -116,8 +183,15 @@ const InfoPopup = (props) => {
                   props.submit(
                     props.state.title,
                     props.state.link,
-                    props.state.color
+                    props.state.color,
+                    props.state.tags
                   );
+                  props.setState({
+                    title: "Link Title",
+                    link: "",
+                    color: "blue",
+                    tags: [],
+                  });
                   props.onClose();
                 }}
               >

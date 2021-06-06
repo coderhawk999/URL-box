@@ -4,17 +4,24 @@ const CustomSelect = (props) => {
   const [show, setShow] = useState(false);
   return (
     <div className="custom-select">
-      <p className="label-text">{props.label}</p>
-      <div className="custom-select-input">
+      {props.label ? <p className="label-text">{props.label}</p> : ""}
+      <div
+        className="custom-select-input"
+        style={{ backgroundColor: props.color }}
+      >
         {" "}
-        <p
-          className="custom-select-input-selected"
-          onClick={() => {
-            setShow(!show);
-          }}
-        >
-          {props.value || "Select a Option"}
-        </p>
+        {props.value ? (
+          <p
+            className="custom-select-input-selected"
+            onClick={() => {
+              setShow(!show);
+            }}
+          >
+            {props.value || "Select a Option"}
+          </p>
+        ) : (
+          ""
+        )}
         {show ? (
           <div className="custom-select-input-options">
             {props.options ? (
