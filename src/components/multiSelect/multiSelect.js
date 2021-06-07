@@ -19,27 +19,27 @@ const MultiSelect = (props) => {
       <p className="label-text">{props.label}</p>
       <div className="multi-select-input">
         {" "}
-          {props.tags
-            ? props.tags.length > 0
-              ? props.tags.map((info, index) => {
-                  return (
-                    <div
-                      className="multi-select-input-selected-item"
-                      key={info.id}
-                    >
-                      <p>{info.title}</p>
-                      <DeleteX
-                        size={14}
-                        color={"#f5f5f5"}
-                        onClick={() => {
-                          props.onDelete(info.id);
-                        }}
-                      />
-                    </div>
-                  );
-                })
-              : ""
-            : ""}
+        {props.tags
+          ? props.tags.length > 0
+            ? props.tags.map((info, index) => {
+                return (
+                  <div
+                    className="multi-select-input-selected-item"
+                    key={info.id}
+                  >
+                    <p>{info.title}</p>
+                    <DeleteX
+                      size={14}
+                      color={"#f5f5f5"}
+                      onClick={() => {
+                        props.onDelete(info.id);
+                      }}
+                    />
+                  </div>
+                );
+              })
+            : ""
+          : ""}
         <input
           multiple={true}
           value={query}
@@ -77,7 +77,7 @@ const MultiSelect = (props) => {
                     </p>
                   );
                 })
-              ) : (
+              ) : props.AddMore ? (
                 <p
                   onClick={() => {
                     props.addOnEmpty(query);
@@ -88,6 +88,8 @@ const MultiSelect = (props) => {
                 >
                   Add tag "{query}""
                 </p>
+              ) : (
+                <p onClick={()=>{setShow(!show)}}>Tag not Found</p>
               )
             ) : (
               <p>{props.selected || "Select a Option"}</p>

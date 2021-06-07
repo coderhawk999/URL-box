@@ -56,3 +56,10 @@ $breakpoint argument choices:
   -tab-land
   -big-desktop
   */
+
+
+  @mixin vertical-center {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+  }

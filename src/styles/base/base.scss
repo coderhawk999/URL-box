@@ -49,9 +49,11 @@ button:focus {
   justify-content: flex-end;
 }
 .button-outline {
+  margin: 5px;
+
   flex: 1;
   padding: 12px;
-  color:white;
+  color: white;
   text-decoration: none;
   background-color: $color-primary;
   font-weight: 600;
@@ -64,6 +66,7 @@ button:focus {
   justify-content: center;
 }
 .button-white {
+  margin: 5px;
   flex: 1;
   padding: 12px;
   color: white;
@@ -92,7 +95,6 @@ button:focus {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-
 }
 .label-text {
   font-weight: 600;
@@ -114,6 +116,40 @@ button:focus {
   stroke: #ffffff;
   transform: all 0.3s ease-in;
   opacity: 1;
+}
+@keyframes fadein {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  1% {
+    transform: translateY(0px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  100% {
+    transform: translateY(4px);
+    opacity: 1;
+    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+  }
+}
+@keyframes fadeout {
+  100% {
+    transform: translateY(4);
+    opacity: 1;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  1% {
+    transform: translateY(0px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  0% {
+    transform: translateY(-10);
+    opacity: 0;
+    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+  }
 }
 @keyframes anvil {
   0% {
@@ -142,9 +178,9 @@ button:focus {
 .popup-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
-input{
+input {
   border: none;
 }
-input:focus{
+input:focus {
   outline: none;
 }

@@ -1,92 +1,58 @@
-@keyframes fadein {
-    0% {
-      transform: translateY(-10px);
-      opacity: 0;
-      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-    }
-    1% {
-      transform: translateY(0px);
-      opacity: 0;
-      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-    }
-    100% {
-      transform: translateY(4px);
-      opacity: 1;
-      box-shadow: 0 0 500px rgba(241, 241, 241, 0);
-    }
-  }
-  @keyframes fadeout {
-    100% {
-      transform: translateY(4);
-      opacity: 1;
-      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-    }
-    1% {
-      transform: translateY(0px);
-      opacity: 0;
-      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-    }
-    0% {
-      transform: translateY(-10);
-      opacity: 0;
-      box-shadow: 0 0 500px rgba(241, 241, 241, 0);
-    }
-  }
-  .multi-select {
-    padding: 10px;
-    &-input {
-      position: relative;
+.multi-select {
+  flex: 1;
+  padding: 10px;
+  &-input {
+    position: relative;
+    background-color: white;
+    flex-wrap: wrap;
+    display: flex;
+    &-selected {
+      flex: 1;
+      width: 100%;
+      padding: 0.7rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $color-text;
       background-color: white;
-      flex-wrap: wrap;
-      display: flex;
-      &-selected {
-        flex: 1;
-        width: 100%;
+
+      &-item {
+        margin: 5px;
+        background-color: $color-accent;
+        text-align: center;
+        padding: 5px;
+        display: flex;
+        p {
+          color: white;
+          font-weight: 600;
+          padding: 0px 10px;
+        }
+      }
+    }
+    &-options {
+      cursor: pointer;
+      overflow-y: scroll;
+      z-index: 100000000000000;
+      -webkit-animation: fadein 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+      animation: fadein 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+      position: absolute;
+      width: initial;
+      margin-top: 5px;
+      width: 100%;
+      max-height: 9rem;
+      top: 30px;
+      background-color: white;
+      border: solid rgba(0, 0, 0, 0.1) 0.1px;
+      p {
+        border-bottom: solid rgba(0, 0, 0, 0.1) 0.1px;
         padding: 0.7rem;
         font-size: 1.1rem;
         font-weight: 600;
         color: $color-text;
         background-color: white;
-
-        &-item{
-            margin: 5px;
-            background-color:$color-accent;
-            text-align: center;
-            padding: 5px;
-            display: flex;
-            p{
-                color: white;
-                font-weight: 600;
-                padding: 0px 10px;
-            }
-        }
       }
-      &-options {
-        cursor: pointer;
-        overflow-y: scroll;
-        z-index: 100000000000000;
-        -webkit-animation: fadein 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
-        animation: fadein 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
-        position: absolute;
-        width: initial;
-        margin-top: 5px;
-        width: 100%;
-        max-height: 9rem;
-        top: 30px;
-        background-color: white;
-        border: solid rgba(0, 0, 0, 0.1) 0.1px;
-        p {
-          border-bottom: solid rgba(0, 0, 0, 0.1) 0.1px;
-          padding: 0.7rem;
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: $color-text;
-          background-color: white;
-        }
-        p:hover {
-          background-color: rgb(243, 243, 243);
-        }
+      p:hover {
+        background-color: rgb(243, 243, 243);
       }
     }
   }
-  
+}

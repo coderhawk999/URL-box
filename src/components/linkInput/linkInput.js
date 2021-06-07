@@ -5,11 +5,13 @@ import CustomInput from "../Input/input";
 import CustomSelect from "../customSelect/customSelect";
 import MultiSelect from "../multiSelect/multiSelect";
 import { Filter } from "../../assets/svgIcons/svg";
+import FilterPop from "../filter/filter";
 import db from "../../db";
 const COLORS = { blue: "#4864e6", red: "#e64848" };
 
 const LinkInputBar = (props) => {
   const [query, setQuery] = useState("");
+  const [fpop, setFpop] = useState(false);
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({
     title: "Link Title",
@@ -30,7 +32,13 @@ const LinkInputBar = (props) => {
           setState={setState}
           submit={props.onAdd}
         />
-        <Link className="button-primary" style={{ flex: "0.08" }}>
+        <Link
+          className="button-primary"
+          style={{ flex: "0.08" }}
+          onClick={() => {
+            setFpop(!fpop);
+          }}
+        >
           <Filter size={16} color={"white"} />
           <p
             style={{
@@ -64,6 +72,16 @@ const LinkInputBar = (props) => {
           Add URL
         </Link>
       </div>
+      {fpop ? (
+        <FilterPop
+          open={fpop}
+          onClose={() => {
+            setFpop(false);
+          }}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
@@ -128,9 +146,13 @@ const InfoPopup = (props) => {
             </div>
             <div className="pop-content-input">
               {" "}
-              <CustomInput label="URL" value={props.state.link}  onChange={(e)=>{
-                props.setState({...props.state,["link"]:e.target.value})
-              }}/>
+              <CustomInput
+                label="URL"
+                value={props.state.link}
+                onChange={(e) => {
+                  props.setState({ ...props.state, ["link"]: e.target.value });
+                }}
+              />
               <CustomInput
                 label="URL title"
                 onChange={(e) => {
@@ -162,6 +184,7 @@ const InfoPopup = (props) => {
                   );
                   props.setState({ ...props.state, tags: newList });
                 }}
+                AddMore={true}
                 addOnEmpty={(val) => {
                   AddTag(val);
                 }}
