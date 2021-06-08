@@ -71,6 +71,7 @@ const MultiSelect = (props) => {
                       onClick={() => {
                         props.onAdd(info);
                         setShow(!show);
+                        setQuery("")
                       }}
                     >
                       {info.title}

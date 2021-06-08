@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Filter = (props) => {
   const [tags, SetTags] = useState([]);
+  const [filterTags, setFilterTags] = useState([]);
   useEffect(() => {
     db.table("tags")
       .toArray()
@@ -24,15 +25,15 @@ const Filter = (props) => {
           <div className="filter-content-fields">
             <MultiSelect
               label="Add Tags"
-              tags={props.tags}
+              tags={filterTags}
               onAdd={(tag) => {
-                var tags = [...tags];
-                SetTags([...tags, { ...tag }]);
+                var new_tags = [...filterTags, tag];
+                setFilterTags(new_tags);
               }}
               AddMore={false}
               onDelete={(tagId) => {
-                var newList = tags.filter((tag) => tag.id != tagId);
-                SetTags([...newList]);
+                var newList = filterTags.filter((tag) => tag.id != tagId);
+                setFilterTags([...newList]);
               }}
               options={tags}
             />
@@ -54,12 +55,27 @@ const Filter = (props) => {
           <div className="filter-content-buttons">
             <div className="filter-content-buttons-item">
               {" "}
-             
-              <Link className="button-white" >Apply filter</Link>
-              <Link className="button-outline">Cancel</Link>
-              <Link className="button-white" >
+              <Link
+                className="button-white"
+                onClick={() => {
+                  let filterTagsIds = filterTags.map((info) => {
+                    return info.id;
+                  });
+                  props.onApply(filterTagsIds);
+                }}
+              >
+                Apply filter
+              </Link>
+              <Link
+                className="button-white"
+                onClick={() => {
+                  setFilterTags([]);
+                  props.clearFilter();
+                }}
+              >
                 Clear Filter
               </Link>
+              <Link className="button-outline">Close</Link>
             </div>
           </div>
         </div>

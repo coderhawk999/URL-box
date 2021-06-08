@@ -19,6 +19,7 @@ const LinkInputBar = (props) => {
     color: "blue",
     tags: [],
   });
+
   return (
     <div className="linkInput">
       <div className="linkInput-bar-container">
@@ -74,7 +75,9 @@ const LinkInputBar = (props) => {
       </div>
       {fpop ? (
         <FilterPop
+          onApply={props.handleTagsFilter}
           open={fpop}
+          clearFilter={props.clearFilter}
           onClose={() => {
             setFpop(false);
           }}
@@ -150,20 +153,20 @@ const InfoPopup = (props) => {
                 label="URL"
                 value={props.state.link}
                 onChange={(e) => {
-                  props.setState({ ...props.state, ["link"]: e.target.value });
+                  props.setState({ ...props.state, link: e.target.value });
                 }}
               />
               <CustomInput
                 label="URL title"
                 onChange={(e) => {
-                  props.setState({ ...props.state, ["title"]: e.target.value });
+                  props.setState({ ...props.state, title: e.target.value });
                 }}
               />
               <CustomSelect
                 label="Choose Tile Colour"
                 value={props.state.color}
                 onChange={(e) => {
-                  props.setState({ ...props.state, ["color"]: e });
+                  props.setState({ ...props.state, color: e });
                 }}
                 options={["blue", "red", "purple"]}
               />
