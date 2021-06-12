@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 
 const Filter = (props) => {
   const [tags, SetTags] = useState([]);
-  const [filterTags, setFilterTags] = useState([]);
+  const [filterTags, setFilterTags] = useState(props.AppliedTags);
   useEffect(() => {
+    console.log(props.AppliedTags)
     db.table("tags")
       .toArray()
       .then((res) => {
@@ -61,7 +62,7 @@ const Filter = (props) => {
                   let filterTagsIds = filterTags.map((info) => {
                     return info.id;
                   });
-                  props.onApply(filterTagsIds);
+                  props.onApply(filterTagsIds,filterTags);
                 }}
               >
                 Apply filter
@@ -75,7 +76,9 @@ const Filter = (props) => {
               >
                 Clear Filter
               </Link>
-              <Link className="button-outline">Close</Link>
+              <Link className="button-outline" onClick={props.onClose}>
+                Close
+              </Link>
             </div>
           </div>
         </div>

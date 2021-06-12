@@ -106,4 +106,26 @@ const Filter = ({ size, color, onClick }) => {
   );
 };
 
-export { Copy, Edit, Delete, DeleteX , Filter};
+const ExternalLink = ({ size, color, onClick }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      style={{ stroke: color }}
+      viewBox="0 0 24 24"
+      fill="none"
+      className="svg-style"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      onClick={onClick}
+    >
+      <g fill="none" fill-rule="evenodd">
+        <path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h5M15 3h6v6M10 14L20.2 3.8" />
+      </g>
+    </svg>
+  );
+};
+
+export { Copy, Edit, Delete, DeleteX, Filter, ExternalLink };

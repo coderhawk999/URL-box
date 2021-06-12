@@ -77,6 +77,7 @@ const LinkInputBar = (props) => {
         <FilterPop
           onApply={props.handleTagsFilter}
           open={fpop}
+          AppliedTags={props.AppliedTags}
           clearFilter={props.clearFilter}
           onClose={() => {
             setFpop(false);

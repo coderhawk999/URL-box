@@ -4,27 +4,30 @@ import PageHeader from "../components/pageHeader/pageHeader";
 import Container from "../components/container/container";
 import LinkInput from "../components/linkInput/linkInput";
 import LisItem from "../components/listItem/listItem";
-import ToolBar from "../components/toolBar/toolBar";
 import db from "../db";
 class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       links: [],
+      tags: [],
     };
     this.handleAddLinks = this.handleAddLinks.bind(this);
     this.handleDeleteLinks = this.handleDeleteLinks.bind(this);
     this.handleTagsFilter = this.handleTagsFilter.bind(this);
-    this.clearFilter = this.clearFilter.bind(this)
+    this.clearFilter = this.clearFilter.bind(this);
+    this.getLinks = this.getLinks.bind(this);
   }
   componentDidMount() {
+    this.getLinks();
+  }
+  getLinks = () => {
     db.table("links")
       .toArray()
       .then((links) => {
         this.setState({ links });
-        console.log(links);
       });
-  }
+  };
   handleAddLinks(title, link, color, tags) {
     const link_obj = {
       title,
@@ -50,8 +53,12 @@ class Index extends React.Component {
         this.setState({ links: newList });
       });
   }
-  handleTagsFilter(filterTags) {
-    console.log(filterTags);
+  handleTagsFilter(filterTags, appliedTags) {
+    if (filterTags.length == 0) {
+      this.getLinks();
+      this.setState({ tags: [] });
+      return;
+    }
     let new_list = this.state.links.filter((info, index) => {
       let filterTagsIds = info.tags.map((tag) => {
         return tag.id;
@@ -59,11 +66,11 @@ class Index extends React.Component {
       let result = filterTags.filter((value) => filterTagsIds.includes(value));
       if (result.length > 0) return true;
     });
-    this.setState({ links: new_list });
+    this.setState({ links: new_list, tags: appliedTags });
   }
 
   clearFilter() {
-    console.log("test")
+    console.log("test");
     db.table("links")
       .toArray()
       .then((links) => {
@@ -81,6 +88,7 @@ class Index extends React.Component {
               onAdd={this.handleAddLinks}
               handleTagsFilter={this.handleTagsFilter}
               clearFilter={this.clearFilter}
+              AppliedTags={this.state.tags}
             />
           </div>
           <div className="search-result">
@@ -90,6 +98,7 @@ class Index extends React.Component {
                   return (
                     <LisItem
                       handleDeleteLinks={this.handleDeleteLinks}
+                      link={info.link}
                       key={info.id}
                       id={info.id}
                       color={info.color}
