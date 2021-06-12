@@ -12,15 +12,15 @@ const SearchCard = ({
   color,
   id,
   handleDeleteLinks,
-  edit,
-  setEdit,
 }) => {
   const [show, setShow] = useState(false);
+  const [showedit,setEdit] = useState(false)
   return (
     <div className="card-container">
       <EditLinkPopup
-        state={(id, description, link, tags, type, title, color)}
-        open={edit}
+        open={showedit}
+        id={id}
+        title={title}
         onClose={() => {
           setEdit(false);
         }}

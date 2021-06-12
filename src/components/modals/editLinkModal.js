@@ -8,15 +8,30 @@ import db from "../../db";
 import { Link } from "react-router-dom";
 const EditLinkPopup = (props) => {
   const [tags, SetTags] = useState([]);
-  const [linkInfo, SetlinkInfo] = useState();
-  useEffect(() => {
+  const [link, setlink] = useState({
+    title: "",
+    link: "",
+    tags: [],
+    color: "blue",
+  });
+
+  useEffect(async () => {
     db.table("tags")
       .toArray()
       .then((res) => {
         console.log(res);
         SetTags(res);
       });
+    const link = await db.links.where("id").equals(props.id).first();
+    setlink(link);
   }, []);
+
+  const UpdateLink = () => {
+    db.links.update(props.id, link).then((res) => {
+      console.log("updated");
+    });
+  };
+
   const AddTag = (title) => {
     const tag_obj = {
       title,
@@ -28,9 +43,9 @@ const EditLinkPopup = (props) => {
           title: title,
           id: id,
         };
-        var tags = [...props.state.tags];
-        props.setState({
-          ...props.state,
+        var tags = [...link.tags];
+        setlink({
+          ...link,
           tags: [...tags, { ...tag }],
         });
       })
@@ -54,7 +69,7 @@ const EditLinkPopup = (props) => {
           <div
             className="pop-header"
             style={{
-              backgroundColor: COLORS[`${props.state.color}`],
+              backgroundColor: COLORS[`${link.color}`],
             }}
           >
             <p className="pop-header-title">{"< " + props.title + " >"}</p>
@@ -62,26 +77,27 @@ const EditLinkPopup = (props) => {
 
           <div className="pop-content">
             <div className="pop-content-info">
-              <p className>{props.state.title}</p>
+              <p className>{link.title}</p>
             </div>
             <div className="pop-content-input">
               {" "}
               <CustomInput
                 label="URL"
-                value={props.state.link}
+                value={link.link}
                 onChange={(e) => {
-                  props.setState({ ...props.state, link: e.target.value });
+                  setlink({ ...link, link: e.target.value });
                 }}
               />
               <CustomInput
                 label="URL title"
+                value={link.title}
                 onChange={(e) => {
-                  props.setState({ ...props.state, title: e.target.value });
+                  setlink({ ...link, title: e.target.value });
                 }}
               />
               <CustomSelect
                 label="Choose Tile Colour"
-                value={props.state.color}
+                value={link.color}
                 onChange={(e) => {
                   props.setState({ ...props.state, color: e });
                 }}
@@ -89,20 +105,18 @@ const EditLinkPopup = (props) => {
               />
               <MultiSelect
                 label="Add Tags"
-                value={props.state.color}
-                tags={props.state.tags}
+                value={link.color}
+                tags={link.tags}
                 onAdd={(tag) => {
-                  var tags = [...props.state.tags];
-                  props.setState({
-                    ...props.state,
+                  var tags = [...link.tags];
+                  setlink({
+                    ...link,
                     tags: [...tags, { ...tag }],
                   });
                 }}
                 onDelete={(tagId) => {
-                  var newList = props.state.tags.filter(
-                    (tag) => tag.id != tagId
-                  );
-                  props.setState({ ...props.state, tags: newList });
+                  var newList = link.tags.filter((tag) => tag.id != tagId);
+                  setlink({ ...props.link, tags: newList });
                 }}
                 AddMore={true}
                 addOnEmpty={(val) => {
@@ -123,14 +137,8 @@ const EditLinkPopup = (props) => {
               <Link
                 className="button-white"
                 onClick={() => {
-                  props.update(
-                    props.state.title,
-                    props.state.link,
-                    props.state.color,
-                    props.state.tags,
-                    props.id
-                  );
-                  props.setState({
+                  UpdateLink();
+                  setlink({
                     title: "Link Title",
                     link: "",
                     color: "blue",
