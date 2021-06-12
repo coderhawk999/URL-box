@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Copy, Edit, Delete, ExternalLink } from "../../assets/svgIcons/svg";
-const COLORS = { blue: "#4864e6", red: "#e64848" };
-
+import EditLinkPopup from "../modals/editLinkModal";
+import { COLORS } from "../../constants/color";
 const SearchCard = ({
   description,
   link,
@@ -12,10 +12,19 @@ const SearchCard = ({
   color,
   id,
   handleDeleteLinks,
+  edit,
+  setEdit,
 }) => {
   const [show, setShow] = useState(false);
   return (
     <div className="card-container">
+      <EditLinkPopup
+        state={(id, description, link, tags, type, title, color)}
+        open={edit}
+        onClose={() => {
+          setEdit(false);
+        }}
+      />
       <div className="card">
         <p
           className="card__search-platform"
@@ -51,7 +60,6 @@ const SearchCard = ({
                 }}
               >
                 <Copy />
-                {/* <p style={{paddingLeft:"5px",display:"flex",flexDirection:"column",justifyContent:"center"}}>Copy</p> */}
               </Link>
               <Link
                 className={"button-outline-accent"}
@@ -61,12 +69,11 @@ const SearchCard = ({
                 }}
               >
                 <ExternalLink />
-                {/* <p style={{paddingLeft:"5px",display:"flex",flexDirection:"column",justifyContent:"center"}}>Copy</p> */}
               </Link>
             </div>
 
             <div className="card-content__buttons-tools">
-              <Link className={"button-outline-accent"}>
+              <Link className={"button-outline-accent"} onClick={()=>{setEdit(true)}}>
                 <Edit />
               </Link>
               <Link

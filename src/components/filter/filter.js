@@ -7,7 +7,7 @@ const Filter = (props) => {
   const [tags, SetTags] = useState([]);
   const [filterTags, setFilterTags] = useState(props.AppliedTags);
   useEffect(() => {
-    console.log(props.AppliedTags)
+    console.log(props.AppliedTags);
     db.table("tags")
       .toArray()
       .then((res) => {
@@ -62,7 +62,8 @@ const Filter = (props) => {
                   let filterTagsIds = filterTags.map((info) => {
                     return info.id;
                   });
-                  props.onApply(filterTagsIds,filterTags);
+                  props.onApply(filterTagsIds, filterTags);
+                  props.onClose();
                 }}
               >
                 Apply filter

@@ -11,8 +11,10 @@ class Index extends React.Component {
     this.state = {
       links: [],
       tags: [],
+      edit: false,
     };
     this.handleAddLinks = this.handleAddLinks.bind(this);
+    this.handleUpdateLinks = this.handleUpdateLinks.bind(this);
     this.handleDeleteLinks = this.handleDeleteLinks.bind(this);
     this.handleTagsFilter = this.handleTagsFilter.bind(this);
     this.clearFilter = this.clearFilter.bind(this);
@@ -69,6 +71,19 @@ class Index extends React.Component {
     this.setState({ links: new_list, tags: appliedTags });
   }
 
+  handleUpdateLinks(title, link, color, tags, id) {
+    const link_obj = {
+      title,
+      link,
+      color,
+      tags,
+    };
+    db.table("links")
+      .update(id, link_obj)
+      .then((res) => {
+        this.getLinks();
+      });
+  }
   clearFilter() {
     console.log("test");
     db.table("links")
@@ -98,6 +113,10 @@ class Index extends React.Component {
                   return (
                     <LisItem
                       handleDeleteLinks={this.handleDeleteLinks}
+                      setEdit={(state) => {
+                        this.setState({ edit: state });
+                      }}
+                      edit={this.state.edit}
                       link={info.link}
                       key={info.id}
                       id={info.id}
