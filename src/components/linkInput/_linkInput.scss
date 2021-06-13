@@ -1,5 +1,5 @@
 .linkInput {
-  padding: 5% 0px;
+  padding: 3% 0px;
   .linkInput-bar-container {
     position: relative;
     box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.49);
@@ -41,6 +41,56 @@
       }
       &-input:focus {
         outline: none;
+      }
+      @include respond(phone) {
+        flex: 1;
+      }
+    }
+    @include respond(tab-port) {
+    }
+    @include respond(phone) {
+      display: flex;
+      flex-direction: column;
+      #filter {
+        display: none;
+      }
+      #addurl {
+        display: none;
+      }
+    }
+    @include respond(tab-port) {
+      display: flex;
+      flex-direction: column;
+      #filter {
+        display: none;
+      }
+      #addurl {
+        display: none;
+      }
+    }
+    @include respond(tab-land) {
+      display: flex;
+      flex-direction: column;
+      #filter {
+        display: none;
+      }
+      #addurl {
+        display: none;
+      }
+    }
+    &-buttons {
+      display: none;
+      @include respond(phone) {
+        flex: 1;
+        display: flex;
+      }
+      @include respond(tab-port) {
+        flex: 1;
+        display: flex;
+      }
+      @include respond(tab-land) {
+        flex: 1;
+        display: flex;
       }
     }
   }

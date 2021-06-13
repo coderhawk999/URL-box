@@ -4,6 +4,7 @@ import PageHeader from "../components/pageHeader/pageHeader";
 import Container from "../components/container/container";
 import LinkInput from "../components/linkInput/linkInput";
 import LisItem from "../components/listItem/listItem";
+import ToolBar from "../components/toolBar/toolBar";
 import db from "../db";
 class Index extends React.Component {
   constructor(props) {
@@ -19,10 +20,31 @@ class Index extends React.Component {
     this.handleTagsFilter = this.handleTagsFilter.bind(this);
     this.clearFilter = this.clearFilter.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.SearchLink = this.SearchLink.bind(this);
   }
   componentDidMount() {
     this.getLinks();
   }
+  SearchLink = (query) => {
+    if (query.length == 0) {
+      if (this.state.tags.length > 0) {
+        let filterTagsId = this.state.tags.map((info) => {
+          return info.id;
+        });
+        this.handleTagsFilter(filterTagsId, this.state.tags);
+        return;
+      }
+      this.getLinks();
+      return;
+    }
+    var patt = new RegExp("^" + query);
+    console.log(patt);
+    var newList = this.state.links.filter((tag) =>
+      tag.title.toLowerCase().includes(query.toLowerCase())
+    );
+    console.log(newList);
+    this.setState({ links: newList });
+  };
   getLinks = () => {
     db.table("links")
       .toArray()
@@ -56,19 +78,25 @@ class Index extends React.Component {
       });
   }
   handleTagsFilter(filterTags, appliedTags) {
-    if (filterTags.length == 0) {
+    if (appliedTags.length == 0) {
       this.getLinks();
       this.setState({ tags: [] });
       return;
     }
-    let new_list = this.state.links.filter((info, index) => {
-      let filterTagsIds = info.tags.map((tag) => {
-        return tag.id;
+    db.table("links")
+      .toArray()
+      .then((links) => {
+        let new_list = links.filter((info, index) => {
+          let filterTagsIds = info.tags.map((tag) => {
+            return tag.id;
+          });
+          let result = filterTags.filter((value) =>
+            filterTagsIds.includes(value)
+          );
+          if (result.length > 0) return true;
+        });
+        this.setState({ links: new_list, tags: appliedTags });
       });
-      let result = filterTags.filter((value) => filterTagsIds.includes(value));
-      if (result.length > 0) return true;
-    });
-    this.setState({ links: new_list, tags: appliedTags });
   }
 
   handleUpdateLinks(title, link, color, tags, id) {
@@ -85,11 +113,10 @@ class Index extends React.Component {
       });
   }
   clearFilter() {
-    console.log("test");
     db.table("links")
       .toArray()
       .then((links) => {
-        this.setState({ links });
+        this.setState({ links, tags: [] });
         console.log(links);
       });
   }
@@ -106,6 +133,7 @@ class Index extends React.Component {
               AppliedTags={this.state.tags}
             />
           </div>
+          <ToolBar tags={this.state.tags} onSearch={this.SearchLink} />
           <div className="search-result">
             {this.state.links.length > 0 ? (
               <>

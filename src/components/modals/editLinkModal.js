@@ -28,6 +28,7 @@ const EditLinkPopup = (props) => {
 
   const UpdateLink = () => {
     db.links.update(props.id, link).then((res) => {
+      props.update(link)
       console.log("updated");
     });
   };
@@ -55,11 +56,6 @@ const EditLinkPopup = (props) => {
     <Popup
       className={"my-popup-content"}
       open={props.open}
-      contentStyle={{
-        width: "30%",
-        overflowX: "hidden",
-        maxWidth: "30%",
-      }}
       modal
       position="right center"
       {...props}

@@ -41,11 +41,11 @@ const AddLinkModal = (props) => {
     <Popup
       className={"my-popup-content"}
       open={props.open}
-      contentStyle={{
-        width: "30%",
-        overflowX: "hidden",
-        maxWidth: "30%",
-      }}
+      // contentStyle={{
+      //   width: "30%",
+      //   overflowX: "hidden",
+      //   maxWidth: "30%",
+      // }}
       modal
       position="right center"
       {...props}

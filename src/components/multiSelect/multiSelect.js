@@ -9,7 +9,7 @@ const MultiSelect = (props) => {
   const SearchTag = (query) => {
     var patt = new RegExp("^" + query);
     console.log(patt);
-    var newList = options.filter((tag) => tag.title.includes(query));
+    var newList = props.options.filter((tag) => tag.title.includes(query));
     console.log(newList);
     SetOptions(newList);
   };

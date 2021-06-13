@@ -29,6 +29,7 @@ const LinkInputBar = (props) => {
         />
         <Link
           className="button-primary"
+          id="filter"
           style={{ flex: "0.08" }}
           onClick={() => {
             setFpop(!fpop);
@@ -63,9 +64,29 @@ const LinkInputBar = (props) => {
           onClick={() => {
             setOpen(!open);
           }}
+          id="addurl"
         >
           Add URL
         </Link>
+        <div className="linkInput-bar-container-buttons">
+          <Link
+            className="button-primary"
+            style={{flex:"0.1",backgroundColor:"#4864e6"}}
+            onClick={() => {
+              setFpop(!fpop);
+            }}
+          >
+            <Filter size={16} color={"white"} />
+          </Link>
+          <Link
+            className={"button-primary"}
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            Add URL
+          </Link>
+        </div>
       </div>
       {fpop ? (
         <FilterPop
@@ -83,7 +104,5 @@ const LinkInputBar = (props) => {
     </div>
   );
 };
-
-
 
 export default LinkInputBar;

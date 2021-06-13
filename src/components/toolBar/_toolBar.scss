@@ -1,6 +1,43 @@
-.toolbar{
-    padding: 5px;
-    background-color: $color-primary;
+.toolbar {
+  padding: 5px;
+  background-color: $color-primary;
+  display: flex;
+  margin-bottom: 3%;
+
+  &-content {
+    width: 100%;
     display: flex;
-    margin:5% 0px;
+    justify-content: space-between;
+    &-tags {
+      color: rgb(165, 165, 165);
+      padding: 10px;
+      font-weight: 600;
+      display: flex;
+
+      &-tag {
+        max-width: initial;
+        padding: 4px 10px;
+        border: solid $color-secondary 2px;
+        color: white;
+        margin: 0px 5px;
+      }
+    }
+
+    input {
+      flex: 0.5;
+      background-color: $color-secondary;
+      margin: 5px;
+      border: solid grey 0px;
+      border-radius: 10px;
+      padding: 10px;
+      color: white;
+      @include respond(phone) {
+       flex: 1;
+      }
+    }
+    @include respond(phone) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

@@ -1,11 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CustomSelect from "../customSelect/customSelect";
-const ToolBar = () => {
+const ToolBar = ({ tags = [], onSearch }) => {
   return (
     <div className="toolbar">
-      <div>
-        <Link className="button-primary">Filter</Link>
+      <div className="toolbar-content">
+        <div className="toolbar-content-tags">
+          {tags.length > 0 ? (
+            tags.map((info, index) => {
+              return <p className="toolbar-content-tags-tag">{info.title}</p>;
+            })
+          ) : (
+            <p className="toolbar-content-tags-tag">ALL</p>
+          )}
+        </div>
+        <input type="text" placeholder="Search"  onChange={(e)=>{
+          onSearch(e.target.value)
+        }} />
       </div>
     </div>
   );

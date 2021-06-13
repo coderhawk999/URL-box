@@ -170,12 +170,27 @@ button:focus {
 }
 .popup-content {
   padding: 0px;
+  width: 30%;
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
   animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
   background-color: $color-primary;
   outline: none;
   border: none;
+
+  @include respond(tab-port) {
+    width: 100%;
+  }
+  @include respond(phone) {
+    width: 90%; 
+  }
+  @include respond(small-phone) {
+    width: 90%;
+  }
+  @include respond(tab-land) {
+    width: 90%;
+  }
 }
+
 .popup-overlay {
   background: rgba(0, 0, 0, 0.3);
 }

@@ -1,9 +1,21 @@
 .search {
 }
 
-.search-result{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+.search-result {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  @include respond(tab-port) {
+    display: block;
+  }
+  @include respond(phone) {
+    display: block;
+  }
+  @include respond(small-phone) {
+    display: block;
+  }
+  @include respond(tab-land) {
+    display: block;
+  }
 }
