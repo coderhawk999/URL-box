@@ -6,9 +6,6 @@ Built with [React.js](https://reactjs.org), [Dexie](https://dexie.org). URL box 
 
 > All the data is stored within your browser tab (IndexedDB)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
 ### Features
 
 - Add and Edit urls with title and tags 
@@ -20,7 +17,7 @@ You will also see any lint errors in the console.
 ## Project setup
 ```
 git clone https://github.com/coderhawk999/URL-box snippin
-cd snippin
+cd url-box
 npm install
 npm start
 ```
