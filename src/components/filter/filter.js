@@ -7,11 +7,9 @@ const Filter = (props) => {
   const [tags, SetTags] = useState([]);
   const [filterTags, setFilterTags] = useState(props.AppliedTags);
   useEffect(() => {
-    console.log(props.AppliedTags);
     db.table("tags")
       .toArray()
       .then((res) => {
-        console.log(res);
         SetTags(res);
       });
   }, []);
@@ -33,7 +31,7 @@ const Filter = (props) => {
               }}
               AddMore={false}
               onDelete={(tagId) => {
-                var newList = filterTags.filter((tag) => tag.id != tagId);
+                var newList = filterTags.filter((tag) => tag.id !== tagId);
                 setFilterTags([...newList]);
               }}
               options={tags}

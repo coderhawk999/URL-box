@@ -8,13 +8,11 @@ import db from "../../db";
 import { Link } from "react-router-dom";
 
 const AddLinkModal = (props) => {
-  console.log(COLORS[`${props.state.color}`]);
   const [tags, SetTags] = useState([]);
   useEffect(() => {
     db.table("tags")
       .toArray()
       .then((res) => {
-        console.log(res);
         SetTags(res);
       });
   }, []);
@@ -41,11 +39,6 @@ const AddLinkModal = (props) => {
     <Popup
       className={"my-popup-content"}
       open={props.open}
-      // contentStyle={{
-      //   width: "30%",
-      //   overflowX: "hidden",
-      //   maxWidth: "30%",
-      // }}
       modal
       position="right center"
       {...props}
@@ -101,7 +94,7 @@ const AddLinkModal = (props) => {
                 }}
                 onDelete={(tagId) => {
                   var newList = props.state.tags.filter(
-                    (tag) => tag.id != tagId
+                    (tag) => tag.id !== tagId
                   );
                   props.setState({ ...props.state, tags: newList });
                 }}

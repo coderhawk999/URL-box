@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Filter } from "../../assets/svgIcons/svg";
 import FilterPop from "../filter/filter";
 import AddLinkModal from "../modals/addLinkModal";
 const LinkInputBar = (props) => {
-  const [query, setQuery] = useState("");
   const [fpop, setFpop] = useState(false);
   const [open, setOpen] = useState(false);
   const [state, setState] = useState({
@@ -52,6 +51,7 @@ const LinkInputBar = (props) => {
             type="linkInput"
             className="linkInput-bar-input"
             placeholder="Paste URL"
+            value={state.link}
             onChange={(e) => {
               setState({ ...state, [`link`]: e.target.value });
             }}
@@ -71,7 +71,7 @@ const LinkInputBar = (props) => {
         <div className="linkInput-bar-container-buttons">
           <Link
             className="button-primary"
-            style={{flex:"0.1",backgroundColor:"#4864e6"}}
+            style={{ flex: "0.1", backgroundColor: "#4864e6" }}
             onClick={() => {
               setFpop(!fpop);
             }}

@@ -26,7 +26,7 @@ class Index extends React.Component {
     this.getLinks();
   }
   SearchLink = (query) => {
-    if (query.length == 0) {
+    if (query.length === 0) {
       if (this.state.tags.length > 0) {
         let filterTagsId = this.state.tags.map((info) => {
           return info.id;
@@ -38,11 +38,9 @@ class Index extends React.Component {
       return;
     }
     var patt = new RegExp("^" + query);
-    console.log(patt);
     var newList = this.state.links.filter((tag) =>
       tag.title.toLowerCase().includes(query.toLowerCase())
     );
-    console.log(newList);
     this.setState({ links: newList });
   };
   getLinks = () => {
@@ -78,7 +76,7 @@ class Index extends React.Component {
       });
   }
   handleTagsFilter(filterTags, appliedTags) {
-    if (appliedTags.length == 0) {
+    if (appliedTags.length === 0) {
       this.getLinks();
       this.setState({ tags: [] });
       return;
@@ -94,6 +92,7 @@ class Index extends React.Component {
             filterTagsIds.includes(value)
           );
           if (result.length > 0) return true;
+          else return false;
         });
         this.setState({ links: new_list, tags: appliedTags });
       });
@@ -117,7 +116,6 @@ class Index extends React.Component {
       .toArray()
       .then((links) => {
         this.setState({ links, tags: [] });
-        console.log(links);
       });
   }
   render() {
@@ -157,7 +155,17 @@ class Index extends React.Component {
                 })}
               </>
             ) : (
-              ""
+              <div className="link-not-found">
+                <p
+                  style={{
+                    fontSize: "1.7rem",
+                    color: "#8f8f8f",
+                    fontWeight: "700",
+                  }}
+                >
+                  Click on Add URL to add a new URL to box
+                </p>
+              </div>
             )}
           </div>
         </Container>

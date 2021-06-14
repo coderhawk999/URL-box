@@ -30,6 +30,12 @@
         &-item {
           width: 33%;
           display: flex;
+          @include respond(phone) {
+            width: 100%;
+          }
+          @include respond(small-phone) {
+            width: 100%;
+          }
         }
       }
     }

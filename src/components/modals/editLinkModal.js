@@ -19,7 +19,6 @@ const EditLinkPopup = (props) => {
     db.table("tags")
       .toArray()
       .then((res) => {
-        console.log(res);
         SetTags(res);
       });
     const link = await db.links.where("id").equals(props.id).first();
@@ -29,7 +28,6 @@ const EditLinkPopup = (props) => {
   const UpdateLink = () => {
     db.links.update(props.id, link).then((res) => {
       props.update(link)
-      console.log("updated");
     });
   };
 
@@ -111,7 +109,7 @@ const EditLinkPopup = (props) => {
                   });
                 }}
                 onDelete={(tagId) => {
-                  var newList = link.tags.filter((tag) => tag.id != tagId);
+                  var newList = link.tags.filter((tag) => tag.id !== tagId);
                   setlink({ ...props.link, tags: newList });
                 }}
                 AddMore={true}

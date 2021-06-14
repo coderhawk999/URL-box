@@ -41,8 +41,6 @@ const SearchCard = ({
             fontSize: "1.2rem",
             fontWeight: "600",
             textAlign: "center",
-            border: "solid grey 0px",
-            borderRadius: "20px",
           }}
         >
           Link copied to clipboard

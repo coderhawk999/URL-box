@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 const ToolBar = ({ tags = [], onSearch }) => {
   return (
     <div className="toolbar">

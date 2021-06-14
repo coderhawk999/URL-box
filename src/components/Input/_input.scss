@@ -4,13 +4,16 @@
   p {
     font-weight: 600;
     color: rgb(149, 149, 149);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   input {
     width: 100%;
     margin-top: 5px;
-    color: rgb(149, 149, 149);
-    padding: 5px;
+    color: rgb(126, 126, 126);
+    padding: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+
   }
   input:focus{
       outline: none;

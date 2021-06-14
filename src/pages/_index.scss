@@ -19,3 +19,16 @@
     display: block;
   }
 }
+
+.link-not-found{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;;
+  }
+
+}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { DeleteX } from "../../assets/svgIcons/svg";
-import db from "../../db";
 const MultiSelect = (props) => {
   const [show, setShow] = useState(false);
   const [query, setQuery] = useState();
@@ -8,9 +7,7 @@ const MultiSelect = (props) => {
 
   const SearchTag = (query) => {
     var patt = new RegExp("^" + query);
-    console.log(patt);
     var newList = props.options.filter((tag) => tag.title.includes(query));
-    console.log(newList);
     SetOptions(newList);
   };
 
@@ -50,7 +47,7 @@ const MultiSelect = (props) => {
           }}
           onChange={(e) => {
             setQuery(e.target.value);
-            if (e.target.value.length == 0) {
+            if (e.target.value.length === 0) {
               setShow(false);
             } else {
               setShow(true);
