@@ -16,7 +16,7 @@ Built with [React.js](https://reactjs.org), [Dexie](https://dexie.org). URL box 
 
 ## Project setup
 ```
-git clone https://github.com/coderhawk999/URL-box snippin
+git clone https://github.com/coderhawk999/URL-box
 cd url-box
 npm install
 npm start
